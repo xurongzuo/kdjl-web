@@ -1,0 +1,49 @@
+{
+  "name": "annoymous",
+  "version": "1.0.0",
+  "description": "I'm a cracker",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": [
+    "口袋精灵",
+    "辅助",
+    "破解"
+  ],
+  "author": "watson",
+  "license": "GPL v3",
+  "devDependencies": {
+    "axios": "^0.19.1",
+    "bytenode": "^1.3.6",
+    "crypto-js": "^3.1.9-1",
+    "electron": "^17.0.0",
+    "electron-builder": "^23.0.3",
+    "jsencrypt": "^3.2.1",
+    "node-machine-id": "^1.1.12"
+  },
+  "build": {
+    "appId": "tk.tamcung.hacker",
+    "productName": "cracker",
+    "target": [
+      "nsis"
+    ],
+    "electronDownload": {
+      "mirror": "https://npm.taobao.org/mirrors/electron/"
+    },
+    "win": {
+      "icon": "./build/hacker.png"
+    }
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": true,
+    "installerIcon": "./build/install.png",
+    "uninstallerIcon": "./build/uninstall.png"
+  },
+  "dependencies": {
+  }
+}

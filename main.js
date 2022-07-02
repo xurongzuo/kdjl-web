@@ -24,19 +24,19 @@ function createWindow() {
         }else if(url.endsWith('index.css')) {
             url = host + 'index.css';
         }else if(url.indexOf('chunk-vendors') !== -1) {
-            url = host + 'chunk-vendors.44b8c239.js';
-        }else if(url.indexOf('index.e55f12b9.js') !== -1) {
-            url = host + 'index.e55f12b9.js';
-        }else if(url.indexOf('pages-index-index~pages-login-login~pages-settings-settings.3465dd95.js')!==-1) {
-            url = host + 'xxx.js'
-        }else if(url.indexOf('pages-index-index.8e578e04.js')!==-1) {
-            url = host + 'pages-index-index.8e578e04.js';
-        }else if(url.indexOf('index.worker.c5fa0413.worker.js')!==-1) {
-            url = host + 'index.worker.c5fa0413.worker.js'
-        }else if(url.indexOf('pages-login-login.4a7c1507.js')!==-1) {
-            url = host + 'pages-login-login.4a7c1507.js'
-        }else if(url.indexOf('pages-settings-settings.ffc6e525.js')!==-1) {
-            url = host + 'pages-settings-settings.ffc6e525.js'
+            url = host + 'chunk-vendors.a5a58c04.js';
+        }else if(url.indexOf('index.209687f3.js') !== -1) {
+            url = host + 'index.209687f3.js';
+        }else if(url.indexOf('pages-index-index~pages-login-login~pages-settings-settings.25e988ad.js')!==-1) {
+            url = host + 'xxx2.js'
+        }else if(url.indexOf('pages-index-index.4ab16ff2.js')!==-1) {
+            url = host + 'pages-index-index.4ab16ff2.js';
+        }else if(url.indexOf('index.worker.3aba2554.worker.js')!==-1) {
+            url = host + 'index.worker.3aba2554.worker.js'
+        // }else if(url.indexOf('pages-login-login.4a7c1507.js')!==-1) {
+        //     url = host + 'pages-login-login.4a7c1507.js'
+        }else if(url.indexOf('pages-settings-settings.172a567b.js')!==-1) {
+            url = host + 'pages-settings-settings.172a567b.js'
         }else {
             flag = true;
         }

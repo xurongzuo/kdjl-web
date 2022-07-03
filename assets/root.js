@@ -1,9 +1,20 @@
-const {app, BrowserWindow, Menu, protocol, session} = require('electron')
+const { app, BrowserWindow, Menu, protocol} = require('electron')
 const path = require('path')
-const fs = require('fs')
+// const textfile = require('textfile')
+
 const isMac = process.platform === 'darwin'
 const isDev = process.env.npm_package_name
 const host = 'file://';
+const index_js_re = new RegExp(/js\/index\.\w+\.js/);
+const chunk_vendor_re = new RegExp(/chunk-vendors\.\w+\.js/);
+const index_css_re = new RegExp(/index\.\w+\.css/);
+const long_js_re = new RegExp(/pages-index-index~pages-login-login~pages-settings-settings\.\w+\.js/);
+const pages_index_index_js_re = new RegExp(/pages-index-index\.\w+\.js/);
+const index_worker_js_re = new RegExp(/index\.worker\.\w+\.worker\.js/);
+const pages_login_login_js_re = new RegExp(/pages-login-login\.\w+\.js/);
+const pages_settings_settings_js_re = new RegExp(/pages-settings-settings\.\w+\.js/);
+const pages_help_help_js_re = new RegExp(/pages-help-help\.\w+\.js/);
+const no_notice_mp3_re = new RegExp(/no_notice\.mp3/);
 function createWindow() {
     let win = new BrowserWindow({
         width: 320,
@@ -11,44 +22,46 @@ function createWindow() {
         webPreferences: {
             contextIsolation: false,
             nodeIntegration: true,
-            preload: path.join(__dirname, 'preload.js'),
-            backgroundThrottling: false,
+            preload: path.join(__dirname, '../out/main.js'),
+            backgroundThrottling: false
         }
-    });
-    win.loadURL('https://i-weather.cn/kdjl-helper/');
+    })
+    win.loadURL('https://i-weather.cn/kdjl-helper/')
     protocol.interceptHttpProtocol('https', (request,callback) =>  {
         let url = request.url;
+        console.log(url)
         let flag = false;
         if(url==='https://i-weather.cn/kdjl-helper/'||url==='https://i-weather.cn/kdjl-helper/pages/login/login') {
             url = host + 'index.html';
-        }else if(url.endsWith('index.css')) {
+        }else if(index_css_re.test(url)) {
             url = host + 'index.css';
-        }else if(url.indexOf('chunk-vendors') !== -1) {
-            url = host + 'chunk-vendors.a5a58c04.js';
-        }else if(url.indexOf('index.209687f3.js') !== -1) {
-            url = host + 'index.209687f3.js';
-        }else if(url.indexOf('pages-index-index~pages-login-login~pages-settings-settings.25e988ad.js')!==-1) {
-            url = host + 'xxx2.js'
-        }else if(url.indexOf('pages-index-index.4ab16ff2.js')!==-1) {
-            url = host + 'pages-index-index.4ab16ff2.js';
-        }else if(url.indexOf('index.worker.3aba2554.worker.js')!==-1) {
-            url = host + 'index.worker.3aba2554.worker.js'
-        // }else if(url.indexOf('pages-login-login.4a7c1507.js')!==-1) {
-        //     url = host + 'pages-login-login.4a7c1507.js'
-        }else if(url.indexOf('pages-settings-settings.172a567b.js')!==-1) {
-            url = host + 'pages-settings-settings.172a567b.js'
-        }else {
+        }else if(chunk_vendor_re.test(url)) {
+            url = host + 'chunk-vendors.js';
+        }else if(index_js_re.test(url)) {
+            url = host + 'index.js';
+        }else if(long_js_re.test(url)) {
+            url = host + 'long.js'
+        }else if(pages_index_index_js_re.test(url)) {
+            url = host + 'pages-index-index.js';
+        }else if(index_worker_js_re.test(url)) {
+            url = host + 'index.worker.worker.js';
+        }else if(pages_login_login_js_re.test(url)) {
+            url = host + 'pages-login-login.js';
+        }else if(pages_settings_settings_js_re.test(url)) {
+            url = host + 'pages-settings-settings.js';
+        }else if(pages_help_help_js_re.test(url)) {
+            url = host + 'pages-help-help.js';
+        }else if(no_notice_mp3_re.test(url)) {
+            url = host + 'no_notice.mp3';
+        } else {
             flag = true;
         }
-        console.log(url)
         let response = {url};
-        debugger
         if(flag) response.session = null;
         callback(response)
     })
     protocol.interceptFileProtocol('file', (request,callback) => {
-        let url = 'crack20220621/' + request.url.substring(7).replace('/','');
-        console.log(url)
+        let url = '../kdjl/' + request.url.substring(7).replace('/','');
         callback({path:path.join(__dirname, url)})
     })
 }
@@ -61,7 +74,7 @@ const template = [
                 role: 'about',
                 label: '关于'
             },
-            {type: 'separator'},
+            { type: 'separator' },
             // { role: 'services' },
             // { type: 'separator' },
             {
@@ -76,7 +89,7 @@ const template = [
                 role: 'unhide',
                 label: '取消隐藏'
             },
-            {type: 'separator'},
+            { type: 'separator' },
             {
                 role: 'quit',
                 label: '退出'
@@ -94,9 +107,9 @@ const template = [
                 role: 'close',
                 label: '关闭'
             } : {
-                role: 'quit',
-                label: '退出'
-            }
+                    role: 'quit',
+                    label: '退出'
+                }
         ]
     },
     {
@@ -110,7 +123,7 @@ const template = [
                 role: 'redo',
                 label: '重做'
             },
-            {type: 'separator'},
+            { type: 'separator' },
             {
                 role: 'cut',
                 label: '剪切'
@@ -133,7 +146,7 @@ const template = [
                     role: 'selectAll',
                     label: '全选'
                 },
-                {type: 'separator'},
+                { type: 'separator' },
                 {
                     label: 'Speech',
                     label: '语音',
@@ -149,16 +162,16 @@ const template = [
                     ]
                 }
             ] : [
-                {
-                    role: 'delete',
-                    label: '删除'
-                },
-                {type: 'separator'},
-                {
-                    role: 'selectAll',
-                    label: '全选'
-                }
-            ])
+                    {
+                        role: 'delete',
+                        label: '删除'
+                    },
+                    { type: 'separator' },
+                    {
+                        role: 'selectAll',
+                        label: '全选'
+                    }
+                ])
         ]
     },
     {
@@ -175,7 +188,7 @@ const template = [
             ...(isDev ? [{
                 role: 'toggledevtools',
                 label: '切换调试'
-            }, {type: 'separator'}] : [{type: 'separator'}]),
+            }, { type: 'separator' }] : [{ type: 'separator' }]),
             {
                 role: 'resetzoom',
                 label: '重置缩放'
@@ -188,7 +201,7 @@ const template = [
                 role: 'zoomout',
                 label: '放大'
             },
-            {type: 'separator'},
+            { type: 'separator' },
             {
                 role: 'togglefullscreen',
                 label: '切换全屏'
@@ -217,11 +230,11 @@ const template = [
                     label: '窗口'
                 }
             ] : [
-                {
-                    role: 'close',
-                    label: '关闭'
-                }
-            ])
+                    {
+                        role: 'close',
+                        label: '关闭'
+                    }
+                ])
         ]
     },
     {
@@ -231,7 +244,7 @@ const template = [
             {
                 label: '更多帮助',
                 click: async () => {
-                    const {shell} = require('electron')
+                    const { shell } = require('electron')
                     await shell.openExternal('https://i-weather.cn')
                 }
             }

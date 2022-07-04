@@ -1,7 +1,7 @@
 const net = require('net');
 const {machineIdSync} = require('node-machine-id');
 
-const HOST = "127.0.0.1";
+const HOST = "140.83.63.105";
 const PORT = 5555;
 const id = machineIdSync();
 

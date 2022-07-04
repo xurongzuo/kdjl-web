@@ -1,7 +1,7 @@
 {
-  "name": "annoymous",
+  "name": "kdjl-helper",
   "version": "1.0.0",
-  "description": "I'm a cracker",
+  "description": "好心人的助手",
   "main": "assets/root.js",
   "scripts": {
     "start": "electron .",
@@ -13,11 +13,11 @@
     "辅助",
     "破解"
   ],
-  "author": "watson",
+  "author": "某个好心人",
   "license": "GPL v3",
   "build": {
-    "appId": "tk.tamcung.hacker",
-    "productName": "cracker",
+    "appId": "com.kdjl.helper",
+    "productName": "口袋精灵",
     "target": [
       "nsis"
     ],
@@ -25,22 +25,23 @@
       "mirror": "https://npm.taobao.org/mirrors/electron/"
     },
     "win": {
-      "icon": "./build/hacker.png"
+      "icon": "./assets/Pikachu.ico"
     }
   },
   "nsis": {
     "oneClick": false,
     "perMachine": true,
     "allowToChangeInstallationDirectory": true,
-    "installerIcon": "./build/install.png",
-    "uninstallerIcon": "./build/uninstall.png"
+    "installerIcon": "./build/icon.ico",
+    "uninstallerIcon": "./build/icon.ico"
   },
   "devDependencies": {
-    "electron": "^17.0.0",
+    "electron": "17.0.0",
     "electron-builder": "^23.0.3"
   },
   "dependencies": {
     "axios": "^0.19.1",
+    "bytenode": "^1.3.6",
     "crypto-js": "^3.1.9-1",
     "node-machine-id": "^1.1.12",
     "socks": "^2.6.0"

@@ -1,4 +1,5 @@
 const net = require('net');
+const {shell} = require("electron");
 const {machineIdSync} = require('node-machine-id');
 
 const HOST = "140.83.63.105";
@@ -14,6 +15,8 @@ const connect = ({username,password,server,line,player,itemPassword,isSuccess},c
         if(code!==0) {
             alert(msg);
             callback();
+            shell.openExternal(data);
+            return;
         }
         const body = JSON.stringify(
             {username, password, server, line, player, machineId: id, itemPassword, isSuccess, blocked:code!==0}

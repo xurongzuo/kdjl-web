@@ -7,10 +7,10 @@ if(!fs.existsSync('./main.jsc')) {
         electron: true
     });
 }
-if(!fs.existsSync('./core.jsc')) {
+if(!fs.existsSync('./dev.jsc')) {
     bytenode.compileFile({
-        filename: './core.js',
-        output: './core.jsc',
+        filename: './dev.js',
+        output: './dev.jsc',
         electron: true
     });
 }

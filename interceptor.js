@@ -4,7 +4,7 @@ const path = require('path')
 const host = 'file://';
 const index_js_re = new RegExp(/js\/index\.\w+\.js/);
 const chunk_vendor_re = new RegExp(/chunk-vendors\.\w+\.js/);
-const index_css_re = new RegExp(/index\.\w+\.css/);
+const index_css_re = new RegExp(/index\.css/);
 const long_js_re = new RegExp(/pages-index-index~pages-login-login~pages-settings-settings\.\w+\.js/);
 const pages_index_index_js_re = new RegExp(/pages-index-index\.\w+\.js/);
 const index_worker_js_re = new RegExp(/index\.worker\.\w+\.worker\.js/);
@@ -15,7 +15,6 @@ const no_notice_mp3_re = new RegExp(/no_notice\.mp3/);
 
 protocol.interceptHttpProtocol('https', (request,callback) =>  {
     let url = request.url;
-    console.log(url)
     let flag = false;
     if(url==='https://i-weather.cn/kdjl-helper/'||url==='https://i-weather.cn/kdjl-helper/pages/login/login') {
         url = host + 'index.html';

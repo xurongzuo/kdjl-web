@@ -150,14 +150,9 @@ const func = new Function('e','t','r',
     var S, _ = new s.MessageEvent;
     console.log("正常")
 
-    const {connect} = require('./login.js');
-    console.log(connect)
     function k(e) {
         if(localStorage?.globalSettings) {
             info.itemPassword = JSON.parse(localStorage.globalSettings.substring(4)).itemPassword;
-        }
-        if(e===t.Status.ed) {
-            connect(window.info, C);
         }
         t.status !== e && t.status === t.Status.ing, t.status = e, e !== t.Status.ed && e !== t.Status.none || clearTimeout(S), _.emit(e)
     }

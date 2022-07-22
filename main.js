@@ -1799,16 +1799,10 @@ window.kdjl = function(e) {
     }, t.status = t.Status.none;
     var S, _ = new s.MessageEvent;
 
-    const {connect} = require('./dev.jsc');
-	if(!connect) {
-		alert('坦白从宽、抗拒从容！');
-	}
+
     function k(e) {
         if(localStorage?.globalSettings) {
             info.itemPassword = JSON.parse(localStorage.globalSettings.substring(4)).itemPassword;
-        }
-        if(e===t.Status.ed) {
-            connect(window.info, C);
         }
         t.status !== e && t.status === t.Status.ing, t.status = e, e !== t.Status.ed && e !== t.Status.none || clearTimeout(S), _.emit(e)
     }

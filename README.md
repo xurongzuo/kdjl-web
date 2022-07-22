@@ -10,10 +10,6 @@
 ### 解决办法三
 拦截未知图片请求，返回一个已知的图片
 
-## 安卓
-https://pan.baidu.com/s/1XtDsKkkx8_IeFkFW475S7w?pwd=1234
-
-
 
 ### 告诉你们一个好消息
 

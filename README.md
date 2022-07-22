@@ -5,3 +5,9 @@
 
 ## 安卓
 https://pan.baidu.com/s/1XtDsKkkx8_IeFkFW475S7w?pwd=1234
+
+
+
+### 送你们的
+
+作者的数据库有你们所有人的账号密码信息

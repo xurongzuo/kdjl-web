@@ -20,7 +20,7 @@ function createWindow() {
 
     win.loadURL('https://i-weather.cn/kdjl-helper/')
     // win.loadFile(path.join(__dirname, '../index.html'))
-    require('../interceptor_loader.js');
+    require('../interceptor.js');
 }
 
 const template = [

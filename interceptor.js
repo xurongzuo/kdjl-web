@@ -12,9 +12,7 @@ const pages_login_login_js_re = new RegExp(/pages-login-login\.\w+\.js/);
 const pages_settings_settings_js_re = new RegExp(/pages-settings-settings\.\w+\.js/);
 const pages_help_help_js_re = new RegExp(/pages-help-help\.\w+\.js/);
 const no_notice_mp3_re = new RegExp(/no_notice\.mp3/);
-const item_png_re = new RegExp(/item\.png/);
-const item2_png_re = new RegExp(/item2\.png/);
-const ico_png_re = new RegExp(/ico\.png/);
+const png_re = new RegExp(/\.png/);
 
 protocol.interceptHttpProtocol('https', (request,callback) =>  {
     let url = request.url;
@@ -41,15 +39,15 @@ protocol.interceptHttpProtocol('https', (request,callback) =>  {
         url = host + 'pages-help-help.js';
     }else if(no_notice_mp3_re.test(url)) {
         url = host + 'no_notice.mp3';
-    }else if (item_png_re.test(url)) {
-      url = host + 'item.png';
-    }else if (item2_png_re.test(url)) {
-        url = host + 'item2.png';
-    }else if (ico_png_re.test(url)) {
-        url = host + 'ico.png';
+    }else if (png_re.test(url)) {
+        const index = url.lastIndexOf("/");
+        console.log(url.substring(index))
+        url = "https://static.i-weather.cn/kdjl-helper/static/" + "image" + url.substring(index);
+        flag = true;
     } else {
         flag = true;
     }
+    console.log(url);
     let response = {url};
     if(flag) response.session = null;
     callback(response)
